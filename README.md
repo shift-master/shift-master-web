@@ -1,6 +1,7 @@
 # shift-master-web
 
-勤務管理 (Shift Master) の公式サイトです。テスター募集ページとプライバシーポリシーを配信します。
+勤務管理 (Shift Master) の公式サイトです。トップページ・機能紹介・よくある質問・利用規約・
+お問い合わせ・プライバシーポリシーを配信します。
 
 ## 公開 URL
 
@@ -26,8 +27,15 @@ http://localhost:3000 で確認できます。
 記事一覧のような仕組みは持たず、`src/app/` 配下にページを直接書く構成です。
 
 - トップページ: [src/app/page.tsx](src/app/page.tsx)
+- 機能紹介: [src/app/features/page.tsx](src/app/features/page.tsx)（データは [src/config/features.ts](src/config/features.ts)）
+- よくある質問: [src/app/faq/page.tsx](src/app/faq/page.tsx)（データは [src/config/faq.ts](src/config/faq.ts)。
+  id はアンカーリンク `/faq/#id` に使うため変更注意）
+- 利用規約: [src/app/terms/page.tsx](src/app/terms/page.tsx)
+- お問い合わせ: [src/app/contact/page.tsx](src/app/contact/page.tsx)
 - プライバシーポリシー: [src/app/privacy-policy/page.tsx](src/app/privacy-policy/page.tsx)
 - サイト共通の名称・URL・連絡先: [src/config/site.ts](src/config/site.ts)（直書きせずここを参照する）
+- ヘッダー・フッター（全ページ共通）: [src/components/organisms/site-header.tsx](src/components/organisms/site-header.tsx) /
+  [site-footer.tsx](src/components/organisms/site-footer.tsx)
 
 新しいページを追加したら、[src/app/sitemap.ts](src/app/sitemap.ts) にも追記してください。
 
@@ -48,8 +56,11 @@ npm run preview   # http://localhost:3000 で out/ を確認
 | --------------------------- | ---------------------------------------------------------------------------------------- |
 | `src/app/`                  | ルーティング（`page.tsx` / `layout.tsx` / `sitemap.ts` / `robots.ts` / `not-found.tsx`） |
 | `src/components/atoms/`     | 最小の UI 部品（CTA ボタンなど）                                                         |
-| `src/components/molecules/` | atoms を束ねた部品（ステップカードなど）                                                 |
+| `src/components/molecules/` | atoms を束ねた部品（ステップカード・機能カードなど）                                     |
+| `src/components/organisms/` | ヘッダー・フッターなど、全ページ共通のまとまり                                          |
 | `src/config/site.ts`        | サイト名・URL・連絡先の唯一の定義                                                        |
+| `src/config/features.ts`    | 機能紹介の唯一の定義（トップページのティザーと /features で共有）                        |
+| `src/config/faq.ts`         | よくある質問の唯一の定義                                                                 |
 | `public/`                   | 画像・`CNAME`（GitHub Pages の独自ドメイン設定）                                         |
 
 ## 移行元について

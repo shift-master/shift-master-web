@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { SITE } from '@/config/site';
+import { SiteHeader } from '@/components/organisms/site-header';
+import { SiteFooter } from '@/components/organisms/site-footer';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -17,7 +19,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja">
-      <body className="antialiased">{children}</body>
+      <body className="flex min-h-screen flex-col antialiased">
+        <SiteHeader />
+        <div className="flex-1">{children}</div>
+        <SiteFooter />
+      </body>
     </html>
   );
 }
