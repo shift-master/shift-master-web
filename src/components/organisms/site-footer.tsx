@@ -8,6 +8,7 @@ const LEGAL_LINKS = [
 
 const NAV_LINKS = [
   { href: '/features/', label: '機能紹介' },
+  { href: '/beta/', label: 'テスター募集' },
   { href: '/faq/', label: 'よくある質問' },
   { href: '/contact/', label: 'お問い合わせ' },
 ];

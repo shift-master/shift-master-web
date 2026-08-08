@@ -34,8 +34,8 @@ export default function Contact() {
         <h2 className="font-bold">クローズドベータのテスト参加について</h2>
         <p className="mt-2 text-sm text-muted">
           参加方法は{' '}
-          <Link href="/faq/#beta-join" className="text-brand hover:underline">
-            よくある質問
+          <Link href="/beta/" className="text-brand hover:underline">
+            テスター募集ページ
           </Link>{' '}
           をご覧ください。テスターグループに関するお問い合わせは{' '}
           <code className="rounded bg-brand/10 px-1.5 py-0.5 text-[0.85em]">

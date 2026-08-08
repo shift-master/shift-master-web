@@ -30,7 +30,7 @@ export default function Features() {
 
       <div className="mt-10 text-center">
         <Link
-          href="/faq/#beta-join"
+          href="/beta/"
           className="inline-block rounded-xl bg-brand px-6 py-3.5 font-bold text-white hover:bg-brand-dark"
         >
           今すぐ試す（クローズドベータ）

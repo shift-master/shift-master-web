@@ -16,12 +16,18 @@ export function SiteHeader() {
           <Image src="/icon.png" alt="" width={28} height={28} className="rounded-md" />
           {SITE.shortName}
         </Link>
-        <nav className="flex flex-wrap gap-x-5 gap-y-1 text-sm text-muted">
+        <nav className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted">
           {NAV_LINKS.map(link => (
             <Link key={link.href} href={link.href} className="hover:text-brand">
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/beta/"
+            className="rounded-full bg-brand px-3.5 py-1.5 font-bold text-white hover:bg-brand-dark"
+          >
+            テスター募集
+          </Link>
         </nav>
       </div>
     </header>

@@ -1,7 +1,7 @@
 # shift-master-web
 
-勤務管理 (Shift Master) の公式サイトです。トップページ・機能紹介・よくある質問・利用規約・
-お問い合わせ・プライバシーポリシーを配信します。
+勤務管理 (Shift Master) の公式サイトです。トップページ・機能紹介・テスター募集・よくある質問・
+利用規約・お問い合わせ・プライバシーポリシーを配信します。
 
 ## 公開 URL
 
@@ -28,8 +28,9 @@ http://localhost:3000 で確認できます。
 
 - トップページ: [src/app/page.tsx](src/app/page.tsx)
 - 機能紹介: [src/app/features/page.tsx](src/app/features/page.tsx)（データは [src/config/features.ts](src/config/features.ts)）
-- よくある質問: [src/app/faq/page.tsx](src/app/faq/page.tsx)（データは [src/config/faq.ts](src/config/faq.ts)。
-  id はアンカーリンク `/faq/#id` に使うため変更注意）
+- テスター募集: [src/app/beta/page.tsx](src/app/beta/page.tsx)（クローズドベータの参加手順。
+  サイト内の「今すぐ試す」系 CTA はすべてここへリンクする）
+- よくある質問: [src/app/faq/page.tsx](src/app/faq/page.tsx)（データは [src/config/faq.ts](src/config/faq.ts)）
 - 利用規約: [src/app/terms/page.tsx](src/app/terms/page.tsx)
 - お問い合わせ: [src/app/contact/page.tsx](src/app/contact/page.tsx)
 - プライバシーポリシー: [src/app/privacy-policy/page.tsx](src/app/privacy-policy/page.tsx)
@@ -57,7 +58,7 @@ npm run preview   # http://localhost:3000 で out/ を確認
 | `src/app/`                  | ルーティング（`page.tsx` / `layout.tsx` / `sitemap.ts` / `robots.ts` / `not-found.tsx`） |
 | `src/components/atoms/`     | 最小の UI 部品（CTA ボタンなど）                                                         |
 | `src/components/molecules/` | atoms を束ねた部品（ステップカード・機能カードなど）                                     |
-| `src/components/organisms/` | ヘッダー・フッターなど、全ページ共通のまとまり                                          |
+| `src/components/organisms/` | ヘッダー・フッターなど、全ページ共通のまとまり                                           |
 | `src/config/site.ts`        | サイト名・URL・連絡先の唯一の定義                                                        |
 | `src/config/features.ts`    | 機能紹介の唯一の定義（トップページのティザーと /features で共有）                        |
 | `src/config/faq.ts`         | よくある質問の唯一の定義                                                                 |

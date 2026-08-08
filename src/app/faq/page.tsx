@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { SITE } from '@/config/site';
+import Link from 'next/link';
 import { FAQ_ITEMS } from '@/config/faq';
-import { StepCard } from '@/components/molecules/step-card';
-import { CtaButton } from '@/components/atoms/cta-button';
 
 const TITLE = 'よくある質問';
 const DESCRIPTION =
@@ -27,36 +25,12 @@ export default function Faq() {
             <p className="mt-2 leading-7 text-muted">{item.answer}</p>
 
             {item.id === 'beta-join' && (
-              <div className="mt-5 space-y-4">
-                <StepCard number={1} title="テスターグループに参加">
-                  <p className="mb-3.5 text-[0.95rem] text-muted">
-                    下のボタンから Google グループに参加します（「グループに参加」をタップ）。
-                    このグループのメンバーだけがテストに参加できます。
-                  </p>
-                  <CtaButton href={SITE.testersGroupUrl}>① グループに参加する</CtaButton>
-                </StepCard>
-
-                <StepCard number={2} title="テスターになる">
-                  <p className="mb-3.5 text-[0.95rem] text-muted">
-                    グループ参加後、下のボタンを開いて{' '}
-                    <strong>「Become a tester（テスターになる）」</strong> をタップします。
-                  </p>
-                  <CtaButton href={SITE.playTestingUrl}>② テスターになる</CtaButton>
-                  <p className="mt-2.5 text-[0.85rem] text-muted">
-                    ※
-                    ①のグループ参加が反映されるまで数分かかる場合があります。エラーが出たら少し待って再度お試しください。
-                  </p>
-                </StepCard>
-
-                <StepCard number={3} title="Google Playでインストール">
-                  <p className="mb-3.5 text-[0.95rem] text-muted">
-                    ②のページの案内、または下のボタンから Google Play を開いてインストールします。
-                  </p>
-                  <CtaButton href={SITE.playStoreUrl} variant="ghost">
-                    ③ Google Playで開く
-                  </CtaButton>
-                </StepCard>
-              </div>
+              <Link
+                href="/beta/"
+                className="mt-3 inline-block font-medium text-brand hover:underline"
+              >
+                テスター募集ページを見る →
+              </Link>
             )}
           </div>
         ))}

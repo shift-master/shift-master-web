@@ -23,7 +23,7 @@ export default function Home() {
         <p className="mx-auto mt-4 max-w-xl leading-7 text-muted">{SITE.description}</p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
-            href="/faq/#beta-join"
+            href="/beta/"
             className="w-full rounded-xl bg-brand px-6 py-3.5 text-center font-bold text-white transition-colors hover:bg-brand-dark sm:w-auto"
           >
             今すぐ試す（クローズドベータ）
@@ -91,7 +91,7 @@ export default function Home() {
             </p>
           </div>
           <Link
-            href="/faq/#beta-join"
+            href="/beta/"
             className="mt-4 inline-block flex-none rounded-xl bg-brand px-5 py-3 text-sm font-bold text-white hover:bg-brand-dark sm:mt-0 sm:ml-6"
           >
             参加方法を見る
