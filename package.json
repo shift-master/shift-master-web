@@ -8,6 +8,7 @@
     "preview": "serve out -l 3000",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
+    "holidays:update": "node scripts/update-japanese-holidays.mjs",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\""
   },
   "dependencies": {
