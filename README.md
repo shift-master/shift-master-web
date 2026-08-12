@@ -25,7 +25,8 @@ URL の年を指定すると、国コード、対象年、日付順の祝日一�
 ```
 
 データ更新時は [src/config/japanese-holidays.ts](src/config/japanese-holidays.ts) を内閣府 CSV と
-照合し、収録年と内容を更新してください。
+照合し、収録年と内容を更新してください。GitHub Actions が毎月1日にCSVを確認し、変更があれば
+更新PRを作成します。手元では `npm run holidays:update` で同じ更新を実行できます。
 
 ## 公開 URL
 

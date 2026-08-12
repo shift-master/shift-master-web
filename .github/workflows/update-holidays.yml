@@ -1,0 +1,89 @@
+# 内閣府の公開CSVを定期確認し、変更がある場合だけ更新PRを作成する。
+name: 祝日データ更新
+
+on:
+  schedule:
+    # 毎月1日 09:00 JST。GitHub ActionsのcronはUTCで指定する。
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-japanese-holidays
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: 依存関係をインストール
+        run: npm ci
+
+      - name: 内閣府CSVから祝日データを更新
+        run: node scripts/update-japanese-holidays.mjs
+
+      - name: 生成ファイルを整形
+        run: npx prettier --write src/config/japanese-holidays.ts
+
+      - name: 変更を検査
+        id: changes
+        run: |
+          if git diff --quiet -- src/config/japanese-holidays.ts; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 型チェック
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run typecheck
+
+      - name: Lint
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run lint
+
+      # GITHUB_TOKENで作成したPRは通常のpull_requestワークフローを起動しないため、ここで検証を完結する。
+      - name: 静的書き出し
+        if: steps.changes.outputs.changed == 'true'
+        run: npm run build
+
+      - name: 更新ブランチへコミット
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          BRANCH_NAME: automation/update-japanese-holidays
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git switch -C "$BRANCH_NAME"
+          git add src/config/japanese-holidays.ts
+          git commit -m 'chore: 日本の祝日データを更新'
+          git push --force-with-lease origin "$BRANCH_NAME"
+
+      - name: 更新PRを作成
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH_NAME: automation/update-japanese-holidays
+        run: |
+          if gh pr view "$BRANCH_NAME" --json url >/dev/null 2>&1; then
+            gh pr edit "$BRANCH_NAME" --body '内閣府「国民の祝日」CSVの最新内容を反映します。自動生成された変更です。'
+          else
+            gh pr create \
+              --base main \
+              --head "$BRANCH_NAME" \
+              --title '日本の祝日データを更新' \
+              --body '内閣府「国民の祝日」CSVの最新内容を反映します。自動生成された変更です。'
+          fi
