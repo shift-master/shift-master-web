@@ -28,6 +28,6 @@
     "prettier": "^3",
     "serve": "^14",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^7"
   }
 }
