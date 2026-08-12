@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import type { JapaneseHoliday } from '@/config/japanese-holidays';
 
 const WEEKDAYS = ['日', '月', '火', '水', '木', '金', '土'] as const;
@@ -46,12 +45,12 @@ export function HolidayCalendar({ holidays, years, initialYear }: HolidayCalenda
             ))}
           </select>
         </label>
-        <Link
+        <a
           href={`/api/holidays/${year}/`}
           className="text-sm font-bold text-brand underline decoration-brand/30 underline-offset-4 hover:text-brand-dark"
         >
           {year}年のJSONを見る
-        </Link>
+        </a>
       </div>
 
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
