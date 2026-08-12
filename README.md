@@ -3,6 +3,30 @@
 勤務管理 (Shift Master) の公式サイトです。トップページ・機能紹介・テスター募集・よくある質問・
 利用規約・お問い合わせ・プライバシーポリシーを配信します。
 
+## 祝日 API
+
+日本の祝日・休日一覧を JSON で公開しています。内閣府「国民の祝日について」が公開する
+[CSV データ](https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv)を基にしており、振替休日と
+国民の休日も含みます。
+
+```text
+GET https://shift-master.services.gekal.cn/api/holidays/2026
+```
+
+URL の年を指定すると、国コード、対象年、日付順の祝日一覧を返します。指定できる年は
+1955〜2027年です。
+
+```json
+{
+  "countryCode": "JP",
+  "year": 2026,
+  "items": [{ "date": "2026-01-01", "name": "元日" }]
+}
+```
+
+データ更新時は [src/config/japanese-holidays.ts](src/config/japanese-holidays.ts) を内閣府 CSV と
+照合し、収録年と内容を更新してください。
+
 ## 公開 URL
 
 https://shift-master.services.gekal.cn/
@@ -31,6 +55,7 @@ http://localhost:3000 で確認できます。
 - テスター募集: [src/app/beta/page.tsx](src/app/beta/page.tsx)（クローズドベータの参加手順。
   サイト内の「今すぐ試す」系 CTA はすべてここへリンクする）
 - よくある質問: [src/app/faq/page.tsx](src/app/faq/page.tsx)（データは [src/config/faq.ts](src/config/faq.ts)）
+- 祝日カレンダー: [src/app/holidays/page.tsx](src/app/holidays/page.tsx)
 - 利用規約: [src/app/terms/page.tsx](src/app/terms/page.tsx)
 - お問い合わせ: [src/app/contact/page.tsx](src/app/contact/page.tsx)
 - プライバシーポリシー: [src/app/privacy-policy/page.tsx](src/app/privacy-policy/page.tsx)
@@ -53,16 +78,17 @@ npm run preview   # http://localhost:3000 で out/ を確認
 
 ## ディレクトリ構成
 
-| パス                        | 内容                                                                                     |
-| --------------------------- | ---------------------------------------------------------------------------------------- |
-| `src/app/`                  | ルーティング（`page.tsx` / `layout.tsx` / `sitemap.ts` / `robots.ts` / `not-found.tsx`） |
-| `src/components/atoms/`     | 最小の UI 部品（CTA ボタンなど）                                                         |
-| `src/components/molecules/` | atoms を束ねた部品（ステップカード・機能カードなど）                                     |
-| `src/components/organisms/` | ヘッダー・フッターなど、全ページ共通のまとまり                                           |
-| `src/config/site.ts`        | サイト名・URL・連絡先の唯一の定義                                                        |
-| `src/config/features.ts`    | 機能紹介の唯一の定義（トップページのティザーと /features で共有）                        |
-| `src/config/faq.ts`         | よくある質問の唯一の定義                                                                 |
-| `public/`                   | 画像・`CNAME`（GitHub Pages の独自ドメイン設定）                                         |
+| パス                              | 内容                                                                                     |
+| --------------------------------- | ---------------------------------------------------------------------------------------- |
+| `src/app/`                        | ルーティング（`page.tsx` / `layout.tsx` / `sitemap.ts` / `robots.ts` / `not-found.tsx`） |
+| `src/components/atoms/`           | 最小の UI 部品（CTA ボタンなど）                                                         |
+| `src/components/molecules/`       | atoms を束ねた部品（ステップカード・機能カードなど）                                     |
+| `src/components/organisms/`       | ヘッダー・フッターなど、全ページ共通のまとまり                                           |
+| `src/config/site.ts`              | サイト名・URL・連絡先の唯一の定義                                                        |
+| `src/config/features.ts`          | 機能紹介の唯一の定義（トップページのティザーと /features で共有）                        |
+| `src/config/faq.ts`               | よくある質問の唯一の定義                                                                 |
+| `src/config/japanese-holidays.ts` | 祝日 API で公開する内閣府準拠の日本の祝日・休日一覧                                      |
+| `public/`                         | 画像・`CNAME`（GitHub Pages の独自ドメイン設定）                                         |
 
 ## 移行元について
 
