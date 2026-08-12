@@ -14,7 +14,11 @@ updates:
       - dependencies
       - npm
     groups:
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
       npm-minor-patch:
+        applies-to: version-updates
         patterns: ["*"]
         update-types: [minor, patch]
   - package-ecosystem: github-actions
@@ -31,6 +35,10 @@ updates:
       - dependencies
       - github-actions
     groups:
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
       actions:
+        applies-to: version-updates
         patterns: ["*"]
         update-types: [minor, patch]
