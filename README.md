@@ -10,7 +10,7 @@
 国民の休日も含みます。
 
 ```text
-GET https://shift-master.services.gekal.cn/api/holidays/2026
+GET https://shift-master.services.gekal.cn/api/holidays/2026/
 ```
 
 URL の年を指定すると、国コード、対象年、日付順の祝日一覧を返します。指定できる年は

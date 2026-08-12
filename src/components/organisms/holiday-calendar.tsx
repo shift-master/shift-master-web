@@ -47,7 +47,7 @@ export function HolidayCalendar({ holidays, years, initialYear }: HolidayCalenda
           </select>
         </label>
         <Link
-          href={`/api/holidays/${year}`}
+          href={`/api/holidays/${year}/`}
           className="text-sm font-bold text-brand underline decoration-brand/30 underline-offset-4 hover:text-brand-dark"
         >
           {year}年のJSONを見る
