@@ -4,6 +4,7 @@ import { SITE } from '@/config/site';
 
 const NAV_LINKS = [
   { href: '/features/', label: '機能紹介' },
+  { href: '/holidays/', label: '祝日カレンダー' },
   { href: '/faq/', label: 'よくある質問' },
   { href: '/contact/', label: 'お問い合わせ' },
 ];
